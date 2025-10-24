@@ -1,0 +1,38 @@
+name: Lidl flyer fetch
+
+on:
+  schedule:
+    - cron: '30 21 * * 6'
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'  # speeds up repeated installs
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install requests
+
+      - name: Run lidl.py, aldi.py
+        run: |
+          python lidl.py
+          python aldi.py
+
+      - name: Persist artifact (PDF from /tmp)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lidl-flyer
+          path: /tmp/*.pdf
+          if-no-files-found: warn
+          retention-days: 7
