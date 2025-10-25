@@ -8,6 +8,8 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Required for creating/updating releases
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
