@@ -24,10 +24,11 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install requests
 
-      - name: Run lidl.py, aldi.py
+      - name: Run *.py
         run: |
           python lidl.py
           python aldi.py
+          python rossmann.py
 
       - name: Create or update latest release
         uses: softprops/action-gh-release@v2
