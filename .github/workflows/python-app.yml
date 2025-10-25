@@ -27,11 +27,14 @@ jobs:
           python lidl.py
           python aldi.py
 
-      - name: Persist artifact (PDF from /tmp)
-        if: always()
-        uses: actions/upload-artifact@v4
+      - name: Create or update latest release
+        uses: softprops/action-gh-release@v2
         with:
-          name: lidl-flyer
-          path: /tmp/*.pdf
-          if-no-files-found: warn
-          retention-days: 7
+          tag_name: latest
+          name: Latest Flyers
+          body: "Automated weekly flyer download"
+          files: /tmp/*.pdf
+          make_latest: true
+          fail_on_unmatched_files: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
