@@ -1,8 +1,8 @@
-name: Lidl flyer fetch
+name: Flyer fetch
 
 on:
   schedule:
-    - cron: '30 21 * * 6'
+    - cron: '0 8 * * 0'
   workflow_dispatch:
 
 jobs:
