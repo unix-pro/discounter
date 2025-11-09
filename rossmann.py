@@ -4,7 +4,8 @@ import requests
 kw = date.today().isocalendar()[1] + 1
 year = date.today().isocalendar()[0]
 
-url = f'https://www.rossmann.de/de/kataloge/angebote/catalogs/{year}_KW{kw}_beilage/pdf/complete.pdf'
+#url = f'https://www.rossmann.de/de/kataloge/angebote/catalogs/{year}_KW{kw}_beilage/pdf/complete.pdf'
+url = f'https://www.rossmann.de/de/kataloge/angebote/catalogs/{year}_kw{kw}_beilage/pdf/complete.pdf'
 
 try:
     resp = requests.get(url)
